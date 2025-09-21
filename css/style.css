@@ -1,0 +1,195 @@
+/* === Layout / Base === */
+:root{
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --ink: #111827;
+  --muted: #6b7280;
+  --btn: #eef2f7;
+  --shadow: 0 12px 28px rgba(0,0,0,.12);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+body{
+  margin: 0; 
+  min-height: 100vh;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  background: var(--bg); 
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+.calculator{
+  width: 360px; 
+  max-width: 95vw;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+#history{
+  min-height: 20px; 
+  font-size: .9rem; 
+  color: var(--muted);
+  text-align: right; 
+  margin: 2px 2px 6px;
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
+#display{
+  width: 100%;
+  height: 64px;
+  margin-bottom: 12px;
+  padding: 0 14px;
+  border: 2px solid #e5e7eb; border-radius: 10px;
+  background: #f8fafc; color: var(--ink);
+  font-size: 2.4rem; text-align: right;
+  font-variant-numeric: tabular-nums; 
+}
+
+.buttons{
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px; 
+  grid-auto-flow: dense;
+}
+
+button{
+  position: relative;
+  border: none; 
+  border-radius: 10px;
+  background: var(--btn); 
+  color: var(--ink);
+  padding: 14px; 
+  font-size: 1.15rem; 
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  transition: transform .08s ease, box-shadow .08s ease, background .15s;
+  overflow:hidden; 
+}
+
+button::after{
+  content: ""; 
+  position: absolute; 
+  inset: 0; 
+  border-radius: inherit;
+  background: transparent; 
+  transition: background .12s ease; 
+  pointer-events:none;
+}
+
+button:hover::after { 
+  background: rgba(0,0,0,.04); 
+
+}
+button:active::after { 
+  background: rgba(0,0,0,.12); 
+}
+
+button:focus { 
+  outline:none; 
+}
+
+button:focus-visible { 
+  box-shadow: 0 0 0 3px #60a5fa; 
+}
+
+button.zero  { 
+  grid-column: span 2; 
+}
+
+button.equal { 
+  grid-row: span 2; 
+}
+
+button.operator { 
+  background: #ffd166; 
+}
+
+button.equal { 
+  background: #06b6d4; color:#fff; 
+}
+
+button.clear { 
+  background: #ef4444; color:#fff; 
+}
+
+button.back { 
+  background: #cbd5e1; 
+}
+
+button.sign { 
+  background: #a7f3d0; 
+}
+
+button.percent { 
+  background: #fde68a; 
+}
+
+button.sqrt, button.square, button.recip { 
+  background:#ffe8a3; 
+}
+
+@media (max-width: 360px) {
+  #display { 
+    font-size: 2rem; 
+    height: 56px; 
+  }
+
+  button { 
+    padding: 12px; 
+    font-size: 1.05rem; 
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root { --bg:#0f172a; 
+    --card:#0b1220; 
+    --ink:#e5e7eb; 
+    --muted:#9ca3af; 
+    --btn:#1e293b; 
+    --shadow: 0 12px 28px rgba(0,0,0,.6); 
+  }
+  
+  #display { 
+    background:#0e1727; 
+    border-color:#293449; 
+  }
+
+  button.operator { 
+    background:#8a6b2a; 
+    color:#fff; 
+  }
+
+  button.equal {
+    background:#0ea5e9; 
+  }
+
+  button.clear {
+    background:#dc2626; 
+  }
+
+  button.back {
+    background:#334155; 
+    color:#e5e7eb; 
+  }
+
+  button.sign {
+    background:#1f6f63; 
+    color:#e5e7eb; 
+  }
+
+  button.percent {
+    background:#7a5b19; 
+    color:#fff; 
+  }
+
+  button.sqrt, button.square, button.recip {
+    background:#433d1b; 
+    color:#e5e7eb; 
+  }
+}
